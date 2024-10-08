@@ -3,6 +3,7 @@ import logging
 import awswrangler as wr
 import pandas as pd
 from faker import Faker
+
 from aws.boto3_awswrangler.utils import aws_sesion
 
 # setting log level for debugging purpose
