@@ -6,7 +6,7 @@ def aws_sesion():
      This function store the
      the aws profile in session, Documenation in the below link
      https://boto3.amazonaws.com/v1/documentation/api/latest/guide/session.html
-     Note: Your credentials should not be expose in a plain text.
+     Note: Your credentials should not be expose in a plain text..
     """
     session = Session(
         aws_access_key_id="YourAccessKey",
