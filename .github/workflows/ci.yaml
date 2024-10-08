@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Running isort.
-        run: isort --check-only  ./aws_boto_awswrangler
+        run: isort --check-only  ./aws/boto3_awswrangler
 
       - name: Running flake8
-        run: flake8 ./aws_boto_awswrangler
+        run: flake8 ./aws/boto3_awswrangler
