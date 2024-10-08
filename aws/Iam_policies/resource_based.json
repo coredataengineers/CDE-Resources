@@ -1,0 +1,14 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::YourAwsAccountNumber:user/xyzUser"
+            },
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::YourS3BucketName"
+        }
+    ]
+}

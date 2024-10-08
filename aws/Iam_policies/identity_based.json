@@ -1,0 +1,118 @@
+# Any entity attched with the policy below will be able to List all IAM user
+# and also be able to List any s3 bucket in Amazon S3
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": [
+                "arn:aws:iam::YourAwsAccountNumber:user/*",
+                "arn:aws:s3:::*"
+            ]
+        }
+    ]
+}
+
+"=========================================================================="
+
+# Any entity attched with the policy below will be able to List all IAM user and
+# able to list all s3 bucket in Amazon s3. The entity will be able to get all
+# IAM user but the entity is denied of the GetUser action on any IAM user
+# resource that has john included in the username. 
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": [
+                "arn:aws:iam::YourAwsAccountNumber:user/*",
+                "arn:aws:s3:::*"
+            ]
+        },
+        {
+            "Sid": "Statement2",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetUser"
+            ],
+            "Resource": [
+                "arn:aws:iam::YourAwsAccountNumber:user/*"
+            ]
+        },
+        {
+            "Sid": "Statement3",
+            "Effect": "Deny",
+            "Action": [
+                "iam:GetUser"
+            ],
+            "Resource": [
+                "arn:aws:iam::YourAwsAccountNumber:user/*john*"
+            ]
+        }
+    ]
+}
+
+"=============================================================="
+
+# Any entity attched with the policy below will be able to create parameter
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "OnlyCreateParmater",
+			"Effect": "Allow",
+			"Action": [
+				"ssm:PutParameter"
+			],
+			"Resource": [
+				"arn:aws:ssm:eu-central-1:YourAwsAccountNumber:parameter/*"
+			]
+		}
+	]
+}
+
+"==============================================================="
+
+# Any entity attched with the policy below will be able to list all the 
+# SSM paramters and be able to create a new SSM parameter only if the 
+# parameter name is start with /dataeng/production/ 
+# Example /CDE/cohort1/database_password will be allowed.
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowParameterListing",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DescribeParameters"
+            ],
+            "Resource": [
+                "arn:aws:ssm:eu-central-1:YourAwsAccountNumber:*"
+            ]
+        },
+        {
+            "Sid": "RestrictivePutParamter",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:PutParameter"
+            ],
+            "Resource": [
+                "arn:aws:ssm:eu-central-1:YourAwsAccountNumber:parameter/CDE/cohort1/*"
+            ]
+        }
+    ]
+}
