@@ -1,0 +1,42 @@
+# This trust policy says, i am trusting only Redshift service 
+# to be able to assume the role
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Principal": {
+                "Service": [
+                    "redshift.amazonaws.com"
+                ]
+            }
+        }
+    ]
+}
+
+"==================================================================="
+
+# This policy will be attach to the IAM role that will be created,
+# This means, the policy below will take effect on any principal
+# we defined in the above trust policy.
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*Bucket*",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        }
+    ]
+}
