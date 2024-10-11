@@ -1,6 +1,7 @@
 import logging
-
 import awswrangler as wr
+
+
 import pandas as pd
 from faker import Faker
 from utils import aws_sesion
